@@ -1,43 +1,38 @@
-import java.lang.*;
-
-public class PigLatinTranslator
-{
-  public static Book translate(Book input)
-  {
-    Book translatedBook = new Book();
-
-    // Add code here to populate translatedBook with a translation of the input book.
-    // Curent do-nothing code will return an empty book.
-
-    return translatedBook;
-  }
-
-  public static String translate(String input)
-  {
-    // System.out.println("Translate String: '" + input + "'");
-
-    // Replace this code to translate a string input.
-    // The input to this function could be any English string. 
-    // A sentence, paragraph, or a single word. 
-    // It should call translateWord at least once.
-    String result = translateWord(input);
-
-    return result;
-  }
-
-  private static String translateWord(String input)
-  {
-    // System.out.println("translateWord: '" + input + "'");
-
-    // Replace this code to correctly translate a single word.
-    // Start here first!
-    String result = input;
+public class PigLatinTranslator {
     
-    return result;
-  }
+    public static String translateWord(String word) {
+        if (word.length() == 0) {
+            return word; 
+        }
 
-  // Add additonal private methods here.
-  // For example, I had one like this:
-  // private static String capitalizeFirstLetter(String input)
+        int firstVowelIndex = -1;
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || 
+                c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
+                firstVowelIndex = i;
+                break;
+            }
+        }
+        
+        if (firstVowelIndex == -1) {
+            return word + "ay";
+        }
 
+        String consonants = word.substring(0, firstVowelIndex);
+        String vowels = word.substring(firstVowelIndex);
+
+        return vowels + consonants + "ay";
+    }
+
+    public static String translateLine(String line) {
+        String[] words = line.split(" ");  
+        String translatedLine = "";
+
+        for (String word : words) {
+            translatedLine += translateWord(word) + " ";
+        }
+
+        return translatedLine.trim();
+    }
 }

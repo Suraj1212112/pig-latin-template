@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TestSuite",
+            "request": "launch",
+            "mainClass": "TestSuite",
+            "projectName": "pig-latin-template_2ab430a4"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
